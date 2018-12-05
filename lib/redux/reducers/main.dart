@@ -10,6 +10,7 @@ abstract class ViewModel {
 
 class StoreContainer {
   static final Store<AppState> global = reduxStore();
+  static dispatch(dynamic action) => global.dispatch(action);
 }
 
 AppState reduxReducer(AppState state, action) => AppState(

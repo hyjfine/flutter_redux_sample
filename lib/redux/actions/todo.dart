@@ -17,3 +17,51 @@ class TodoListFailureAction extends ActionType {
 
   TodoListFailureAction({this.errorInfo}) : super(payload: errorInfo);
 }
+
+class TodoDeleteRequestAction extends VoidAction {}
+
+class TodoDeleteSuccessAction extends ActionType {
+  final Todo payload;
+
+  TodoDeleteSuccessAction({this.payload}) : super(payload: payload);
+}
+
+class TodoDeleteFailureAction extends ActionType {
+  final RequestFailureInfo errorInfo;
+
+  TodoDeleteFailureAction({this.errorInfo}) : super(payload: errorInfo);
+}
+
+class TodoPostRequestAction extends VoidAction {}
+
+class TodoPostSuccessAction extends ActionType {
+  final Todo payload;
+
+  TodoPostSuccessAction({this.payload}) : super(payload: payload);
+}
+
+class TodoPostFailureAction extends ActionType {
+  final RequestFailureInfo errorInfo;
+
+  TodoPostFailureAction({this.errorInfo}) : super(payload: errorInfo);
+}
+
+class TodoUpdateRequestAction extends VoidAction {}
+
+class TodoUpdateSuccessAction extends ActionType {
+  final Todo payload;
+
+  TodoUpdateSuccessAction({this.payload}) : super(payload: payload);
+}
+
+class TodoUpdateFailureAction extends ActionType {
+  final RequestFailureInfo errorInfo;
+
+  TodoUpdateFailureAction({this.errorInfo}) : super(payload: errorInfo);
+}
+
+class UpdateTodoListAction extends ActionType {
+  final Todo payload;
+
+  UpdateTodoListAction({this.payload}) : super(payload: payload);
+}

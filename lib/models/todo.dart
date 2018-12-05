@@ -4,13 +4,13 @@ class Todo {
   String note;
   String task;
 
-  Todo(this.task, {this.complete = false, String note = '', String id})
+  Todo({this.task, this.complete = false, String note = '', String id})
       : this.note = note ?? '',
         this.id = id ?? 'uuid';
 
   Todo copyWith({bool complete, String id, String note, String task}) {
     return Todo(
-      task ?? this.task,
+      task: task ?? this.task,
       complete: complete ?? this.complete,
       id: id ?? this.id,
       note: note ?? this.note,

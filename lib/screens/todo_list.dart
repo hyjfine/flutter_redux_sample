@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/services/todo.dart';
 import 'package:redux/redux.dart';
@@ -94,7 +95,13 @@ class TodoListPresentation extends StatelessWidget {
           },
           onTap: () => _onTodoTap(context, todo),
           onCheckboxChanged: (complete) {
-            onCheckboxChanged(todo, complete);
+            StoreContainer.dispatch(UpdateTodoListAction(
+                payload: Todo(
+                    task: todo.task,
+                    id: todo.id,
+                    note: todo.note,
+                    complete: complete)));
+            // onCheckboxChanged(todo, complete);
           },
         );
       },

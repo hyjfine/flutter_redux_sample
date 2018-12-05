@@ -30,13 +30,20 @@ class TodoListReducer {
       case TodoListSuccessAction:
         print('-----');
         print(action.payload);
-        var st = state.copyWith(isLoading: false, todoList: action.payload.data);
+        var st =
+            state.copyWith(isLoading: false, todoList: action.payload.data);
         print('----- ${st.todoList.length}');
         print(st.todoList);
         return st;
 
       case TodoListFailureAction:
         return state.copyWith(isLoading: false);
+
+      case UpdateTodoListAction:
+        var list = state.todoList;
+        list.firstWhere((item) => item.id == action.payload.id).complete =
+            action.payload.complete;
+        return state.copyWith(todoList: list);
 
       default:
         return state;
