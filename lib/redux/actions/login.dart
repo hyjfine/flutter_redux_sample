@@ -1,16 +1,18 @@
 import 'package:flutter_app_redux/models/request_failure.dart';
 import 'package:flutter_app_redux/redux/actions/main.dart';
 
-class LoginRequestAction extends VoidAction {}
+class FetchTodoListAction extends VoidAction {}
 
-class LoginSuccessAction extends ActionType {
+class TodoListRequestAction extends VoidAction {}
+
+class TodoListSuccessAction extends ActionType {
   final payload;
 
-  LoginSuccessAction({this.payload}) : super(payload: payload);
+  TodoListSuccessAction({this.payload}) : super(payload: payload);
 }
 
-class LoginFailureAction extends ActionType {
+class TodoListFailureAction extends ActionType {
   final RequestFailureInfo errorInfo;
 
-  LoginFailureAction({this.errorInfo}) : super(payload: errorInfo);
+  TodoListFailureAction({this.errorInfo}) : super(payload: errorInfo);
 }

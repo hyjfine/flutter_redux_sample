@@ -13,7 +13,7 @@ class StoreContainer {
 }
 
 AppState reduxReducer(AppState state, action) => AppState(
-      login: LoginReducer().reducer(state.login, action),
+      todoList: TodoListReducer().reducer(state.todoList, action),
     );
 
 Store reduxStore() => Store<AppState>(reduxReducer,
@@ -21,15 +21,15 @@ Store reduxStore() => Store<AppState>(reduxReducer,
 
 @immutable
 class AppState {
-  final LoginState login;
+  final TodoListState todoList;
 
   const AppState({
-    this.login,
+    this.todoList,
   });
 }
 
 AppState _initialReduxState() {
   return AppState(
-    login: LoginState.initialState(),
+    todoList: TodoListState.initialState(),
   );
 }

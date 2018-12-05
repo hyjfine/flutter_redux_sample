@@ -1,24 +1,30 @@
+import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/redux/actions/login.dart';
 import 'package:flutter_app_redux/redux/actions/main.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class LoginState {
+class TodoListState {
   final bool isLoading;
+  final List<Todo> todoList;
 
-  LoginState({this.isLoading});
+  TodoListState({this.todoList, this.isLoading});
 
-  LoginState copyWith({bool isLoading}) {
-    return LoginState(isLoading: isLoading ?? this.isLoading);
+  TodoListState copyWith({bool isLoading, List<Todo> list}) {
+    return TodoListState(
+        isLoading: isLoading ?? this.isLoading,
+        todoList: todoList ?? this.todoList);
   }
 
-  LoginState.initialState() : isLoading = false;
+  TodoListState.initialState()
+      : isLoading = false,
+        todoList = [];
 }
 
-class LoginReducer {
-  LoginState reducer(LoginState state, ActionType action) {
+class TodoListReducer {
+  TodoListState reducer(TodoListState state, ActionType action) {
     switch (action.runtimeType) {
-      case LoginRequestAction:
+      case TodoListRequestAction:
         return state.copyWith(isLoading: true);
 
       default:
