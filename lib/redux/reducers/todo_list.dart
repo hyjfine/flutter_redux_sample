@@ -1,6 +1,6 @@
 import 'package:flutter_app_redux/models/todo.dart';
-import 'package:flutter_app_redux/redux/actions/login.dart';
 import 'package:flutter_app_redux/redux/actions/main.dart';
+import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -10,7 +10,7 @@ class TodoListState {
 
   TodoListState({this.todoList, this.isLoading});
 
-  TodoListState copyWith({bool isLoading, List<Todo> list}) {
+  TodoListState copyWith({bool isLoading, List<Todo> todoList}) {
     return TodoListState(
         isLoading: isLoading ?? this.isLoading,
         todoList: todoList ?? this.todoList);
@@ -26,6 +26,17 @@ class TodoListReducer {
     switch (action.runtimeType) {
       case TodoListRequestAction:
         return state.copyWith(isLoading: true);
+
+      case TodoListSuccessAction:
+        print('-----');
+        print(action.payload);
+        var st = state.copyWith(isLoading: false, todoList: action.payload.data);
+        print('----- ${st.todoList.length}');
+        print(st.todoList);
+        return st;
+
+      case TodoListFailureAction:
+        return state.copyWith(isLoading: false);
 
       default:
         return state;

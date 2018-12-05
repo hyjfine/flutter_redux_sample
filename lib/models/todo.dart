@@ -1,4 +1,3 @@
-
 class Todo {
   bool complete;
   String id;
@@ -19,7 +18,7 @@ class Todo {
   }
 
   Todo.fromJson(Map<String, dynamic> json) {
-    complete = json['complete'];
+    complete = json['complete'] ?? false;
     id = json['id'];
     note = json['note'];
     task = json['task'];
@@ -42,5 +41,24 @@ class Todo {
   @override
   String toString() {
     return 'Todo{complete: $complete, task: $task, note: $note, id: $id}';
+  }
+}
+
+class TodoList {
+  List<Todo> data;
+
+  TodoList({this.data});
+
+  TodoList.initialState() {
+    data = [];
+  }
+
+  @override
+  String toString() {
+    return 'TodoList{data: $data}';
+  }
+
+  TodoList.fromJson(List<dynamic> json) {
+    data = json.map((item) => Todo.fromJson(item)).toList();
   }
 }

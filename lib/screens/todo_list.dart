@@ -13,7 +13,6 @@ class TodoListViewModel {
 
   TodoListViewModel({this.isLoading, this.todoList});
 
-
   static TodoListViewModel fromStore(Store<AppState> store) {
     return TodoListViewModel(
       isLoading: store.state.todoList.isLoading,
@@ -22,14 +21,39 @@ class TodoListViewModel {
   }
 }
 
-class TodoListScreen extends StatelessWidget {
+// class TodoListScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     print('------todolistScreen build');
+//     return StoreConnector<AppState, TodoListViewModel>(
+//       onInit: (store) => TodoApi.fetchTodoList(),
+//       converter: TodoListViewModel.fromStore,
+//       builder: (context, vm) => TodoListPresentation(vm: vm, todos: vm.todoList),
+//     );
+//   }
+// }
+
+class TodoListScreen extends StatefulWidget {
+  @override
+  _TodoListScreenState createState() => _TodoListScreenState();
+}
+
+class _TodoListScreenState extends State<TodoListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    print('------initState ');
+    TodoApi.fetchTodoList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('------todolistScreen build');
     return StoreConnector<AppState, TodoListViewModel>(
-      distinct: true,
       onInit: (store) => TodoApi.fetchTodoList(),
       converter: TodoListViewModel.fromStore,
-      builder: (context, vm) => TodoListPresentation(vm: vm, todos: vm.todoList),
+      builder: (context, vm) =>
+          TodoListPresentation(vm: vm, todos: vm.todoList),
     );
   }
 }
@@ -46,11 +70,13 @@ class TodoListPresentation extends StatelessWidget {
       this.vm,
       this.onCheckboxChanged,
       this.onRemove,
-      this.onUndoRemove, this.todos})
+      this.onUndoRemove,
+      this.todos})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('------todolistPresentation build ${todos.length}');
     return _buildListView();
   }
 
