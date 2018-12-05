@@ -45,6 +45,10 @@ class TodoListReducer {
             action.payload.complete;
         return state.copyWith(todoList: list);
 
+      case TodoPostSuccessAction:
+        var list = state.todoList..add(action.payload);
+        return state.copyWith(todoList: list);
+
       default:
         return state;
     }

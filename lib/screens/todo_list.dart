@@ -91,7 +91,7 @@ class TodoListPresentation extends StatelessWidget {
         return TodoItem(
           todo: todo,
           onDismissed: (direction) {
-            _removeTodo(context, todo);
+            TodoApi.deleteTodoList(todo.id);
           },
           onTap: () => _onTodoTap(context, todo),
           onCheckboxChanged: (complete) {
@@ -106,23 +106,6 @@ class TodoListPresentation extends StatelessWidget {
         );
       },
     );
-  }
-
-  void _removeTodo(BuildContext context, Todo todo) {
-    onRemove(todo);
-
-//    Scaffold.of(context).showSnackBar(SnackBar(
-//        duration: Duration(seconds: 2),
-//        backgroundColor: Theme.of(context).backgroundColor,
-//        content: Text(
-//          ArchSampleLocalizations.of(context).todoDeleted(todo.task),
-//          maxLines: 1,
-//          overflow: TextOverflow.ellipsis,
-//        ),
-//        action: SnackBarAction(
-//          label: ArchSampleLocalizations.of(context).undo,
-//          onPressed: () => onUndoRemove(todo),
-//        )));
   }
 
   void _onTodoTap(BuildContext context, Todo todo) {

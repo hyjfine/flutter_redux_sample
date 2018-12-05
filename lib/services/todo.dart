@@ -1,5 +1,6 @@
 import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/redux/actions/todo.dart';
+import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/services/main.dart';
 
 class TodoApi {
@@ -15,11 +16,9 @@ class TodoApi {
 
   static deleteTodoList(String id) {
     final apiFuture = Services.rest.delete('/api/v1/todo/$id');
-    Services.asyncRequest(
-        apiFuture,
-        TodoDeleteRequestAction(),
-        (json) => TodoDeleteSuccessAction(payload: Todo.fromJson(json)),
-        (errorInfo) => TodoDeleteFailureAction(errorInfo: errorInfo));
+    Services.asyncRequest(apiFuture, TodoDeleteRequestAction(), (json) {
+      TodoApi.fetchTodoList();
+    }, (errorInfo) => TodoDeleteFailureAction(errorInfo: errorInfo));
   }
 
   static postTodoList() {
