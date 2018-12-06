@@ -4,9 +4,10 @@ import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
+import 'package:flutter_app_redux/screens/todo_detail.dart';
 import 'package:flutter_app_redux/services/todo.dart';
-import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
 class TodoListViewModel {
   final bool isLoading;
@@ -109,6 +110,11 @@ class TodoListPresentation extends StatelessWidget {
   }
 
   void _onTodoTap(BuildContext context, Todo todo) {
+    // Navigator.push(context,
+    //     MaterialPageRoute(builder: (_) => TodoDetailScreen(id: todo.id)));
+
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => TodoDetailScreen(id: todo.id)));
 //    Navigator
 //        .of(context)
 //        .push(MaterialPageRoute(

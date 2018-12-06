@@ -65,3 +65,17 @@ class UpdateTodoListAction extends ActionType {
 
   UpdateTodoListAction({this.payload}) : super(payload: payload);
 }
+
+class TodoDetailRequestAction extends VoidAction {}
+
+class TodoDetailSuccessAction extends ActionType {
+  final Todo payload;
+
+  TodoDetailSuccessAction({this.payload}) : super(payload: payload);
+}
+
+class TodoDetailFailureAction extends ActionType {
+  final RequestFailureInfo errorInfo;
+
+  TodoDetailFailureAction({this.errorInfo}) : super(payload: errorInfo);
+}
