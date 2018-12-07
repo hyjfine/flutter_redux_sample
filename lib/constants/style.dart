@@ -48,20 +48,4 @@ class HColors {
   static const Color mediumGrey = Color(0xFF86919C);
   static const Color lightGrey = Color(0xFFAFB5BD);
   static const Color lighterGrey = Color(0xFFDEE4EC);
-
-  static const MaterialColor theme = MaterialColor(
-    0xFF448AFF,
-    <int, Color>{
-      50: Color(0xFF448AFF), // TODO: 色板需要重新计算 rgb 值
-      100: Color(0xFF448AFF),
-      200: Color(0xFF448AFF),
-      300: Color(0xFF448AFF),
-      400: Color(0xFF448AFF),
-      500: Color(0xFF448AFF), // primary
-      600: Color(0xFF448AFF),
-      700: Color(0xFF448AFF),
-      800: Color(0xFF448AFF),
-      900: Color(0xFF448AFF),
-    },
-  );
 }

@@ -15,7 +15,7 @@ class RequestFailureInfo {
 
   bool get hasErrorInfo =>
       !StringUtil.isNullOrBlank(errorCode) ||
-          !StringUtil.isNullOrBlank(errorMessage);
+      !StringUtil.isNullOrBlank(errorMessage);
 
   @override
   String toString() {
@@ -29,8 +29,8 @@ class RequestFailureInfo {
   @override
   bool operator ==(other) =>
       identical(this, other) ||
-          other is RequestFailureInfo &&
-              errorCode == other.errorCode &&
-              errorMessage == other.errorMessage &&
-              dateTime == other.dateTime;
+      other is RequestFailureInfo &&
+          errorCode == other.errorCode &&
+          errorMessage == other.errorMessage &&
+          dateTime == other.dateTime;
 }

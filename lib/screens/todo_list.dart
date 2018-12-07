@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
@@ -6,88 +7,72 @@ import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/screens/todo_detail.dart';
 import 'package:flutter_app_redux/services/todo.dart';
+import 'package:flutter_app_redux/widgets/loading.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class TodoListViewModel {
   final bool isLoading;
+  final bool isModify;
   final List<Todo> todoList;
 
-  TodoListViewModel({this.isLoading, this.todoList});
+  TodoListViewModel({this.isLoading, this.isModify, this.todoList});
 
   static TodoListViewModel fromStore(Store<AppState> store) {
     return TodoListViewModel(
       isLoading: store.state.todoList.isLoading,
+      isModify: store.state.todoList.isModify,
       todoList: store.state.todoList.todoList,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TodoListViewModel &&
+          runtimeType == other.runtimeType &&
+          isLoading == other.isLoading &&
+          isModify == other.isModify &&
+          IterableEquality().equals(todoList, other.todoList);
+
+  @override
+  int get hashCode =>
+      isLoading.hashCode ^
+      isModify.hashCode ^
+      IterableEquality().hash(todoList);
 }
 
-// class TodoListScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     print('------todolistScreen build');
-//     return StoreConnector<AppState, TodoListViewModel>(
-//       onInit: (store) => TodoApi.fetchTodoList(),
-//       converter: TodoListViewModel.fromStore,
-//       builder: (context, vm) => TodoListPresentation(vm: vm, todos: vm.todoList),
-//     );
-//   }
-// }
-
-class TodoListScreen extends StatefulWidget {
-  @override
-  _TodoListScreenState createState() => _TodoListScreenState();
-}
-
-class _TodoListScreenState extends State<TodoListScreen> {
-  @override
-  void initState() {
-    super.initState();
-    print('------initState ');
-    TodoApi.fetchTodoList();
-  }
-
+class TodoListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('------todolistScreen build');
     return StoreConnector<AppState, TodoListViewModel>(
+      distinct: true,
       onInit: (store) => TodoApi.fetchTodoList(),
       converter: TodoListViewModel.fromStore,
       builder: (context, vm) =>
-          TodoListPresentation(vm: vm, todos: vm.todoList),
+          TodoListPresentation(vm: vm, todoList: vm.todoList),
     );
   }
 }
 
 class TodoListPresentation extends StatelessWidget {
   final TodoListViewModel vm;
-  final List<Todo> todos;
-  final Function(Todo, bool) onCheckboxChanged;
-  final Function(Todo) onRemove;
-  final Function(Todo) onUndoRemove;
+  final List<Todo> todoList;
 
-  const TodoListPresentation(
-      {Key key,
-      this.vm,
-      this.onCheckboxChanged,
-      this.onRemove,
-      this.onUndoRemove,
-      this.todos})
+  const TodoListPresentation({Key key, this.vm, this.todoList})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print('------todolistPresentation build ${todos.length}');
-    return _buildListView();
+    return vm.isLoading ? Loading() : _buildListView();
   }
 
   ListView _buildListView() {
     return ListView.builder(
       key: UniqueKey(),
-      itemCount: todos.length,
+      itemCount: todoList.length,
       itemBuilder: (BuildContext context, int index) {
-        final todo = todos[index];
+        final todo = todoList[index];
 
         return TodoItem(
           todo: todo,
@@ -102,7 +87,6 @@ class TodoListPresentation extends StatelessWidget {
                     id: todo.id,
                     note: todo.note,
                     complete: complete)));
-            // onCheckboxChanged(todo, complete);
           },
         );
       },
@@ -110,35 +94,8 @@ class TodoListPresentation extends StatelessWidget {
   }
 
   void _onTodoTap(BuildContext context, Todo todo) {
-    // Navigator.push(context,
-    //     MaterialPageRoute(builder: (_) => TodoDetailScreen(id: todo.id)));
-
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => TodoDetailScreen(id: todo.id)));
-//    Navigator
-//        .of(context)
-//        .push(MaterialPageRoute(
-//      builder: (_) => TodoDetails(id: todo.id),
-//    ))
-//        .then((removedTodo) {
-//      if (removedTodo != null) {
-//        Scaffold.of(context).showSnackBar(SnackBar(
-//            key: ArchSampleKeys.snackbar,
-//            duration: Duration(seconds: 2),
-//            backgroundColor: Theme.of(context).backgroundColor,
-//            content: Text(
-//              ArchSampleLocalizations.of(context).todoDeleted(todo.task),
-//              maxLines: 1,
-//              overflow: TextOverflow.ellipsis,
-//            ),
-//            action: SnackBarAction(
-//              label: ArchSampleLocalizations.of(context).undo,
-//              onPressed: () {
-//                onUndoRemove(todo);
-//              },
-//            )));
-//      }
-//    });
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => TodoDetailScreen(id: todo.id)));
   }
 }
 

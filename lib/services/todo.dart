@@ -25,9 +25,11 @@ class TodoApi {
 
   static deleteTodoList(String id) {
     final apiFuture = Services.rest.delete('/api/v1/todo/$id');
-    Services.asyncRequest(apiFuture, TodoDeleteRequestAction(), (json) {
-      TodoApi.fetchTodoList();
-    }, (errorInfo) => TodoDeleteFailureAction(errorInfo: errorInfo));
+    Services.asyncRequest(
+        apiFuture,
+        TodoDeleteRequestAction(),
+        (json) => TodoDeleteSuccessAction(payload: Todo.fromJson(json)),
+        (errorInfo) => TodoDeleteFailureAction(errorInfo: errorInfo));
   }
 
   static postTodoList() {
@@ -36,7 +38,7 @@ class TodoApi {
         apiFuture,
         TodoPostRequestAction(),
         (json) => TodoPostSuccessAction(payload: Todo.fromJson(json)),
-        (erroInfo) => TodoPostFailureAction(errorInfo: erroInfo));
+        (errorInfo) => TodoPostFailureAction(errorInfo: errorInfo));
   }
 
   static updateTodoList() {
@@ -45,6 +47,6 @@ class TodoApi {
         apiFuture,
         TodoUpdateRequestAction(),
         (json) => TodoUpdateSuccessAction(payload: Todo.fromJson(json)),
-        (erroInfo) => TodoUpdateFailureAction(errorInfo: erroInfo));
+        (errorInfo) => TodoUpdateFailureAction(errorInfo: errorInfo));
   }
 }
