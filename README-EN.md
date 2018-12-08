@@ -1,4 +1,4 @@
-Language: [English](https://github.com/hyjfine/flutter_redux_sample) | [中文简体](https://github.com/hyjfine/flutter_redux_sample/blob/master/README-EN.md)
+Language: [中文简体](https://github.com/hyjfine/flutter_redux_sample) | [English](https://github.com/hyjfine/flutter_redux_sample/blob/master/README-EN.md)
 # flutter_redux_sample
 [![Build Status](https://travis-ci.org/hyjfine/flutter_redux_sample.svg?branch=master)](https://travis-ci.org/hyjfine/flutter_redux_sample)
 
@@ -8,7 +8,7 @@ Todo List example, modularizing MVVM, managing data and state with Redux.  Sampl
 
 ### File Structure
 
-  <img align="left" width="361" height="327" src="http://me.wozaihui.com/hyj-doc-flutter-demo-files.jpg">
+  <img align="left" width="375" height="327" src="http://me.wozaihui.com/hyj-doc-flutter-demo-files.jpg">
 
 ### Branch
 
