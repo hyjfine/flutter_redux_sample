@@ -2,11 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class Loading extends StatelessWidget {
-
-  // const HEmptyStatusView({
-  //   Key key,
-  // }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Center(
