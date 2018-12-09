@@ -1,7 +1,7 @@
 import 'package:flutter_app_redux/models/todo.dart';
-import 'package:flutter_app_redux/redux/actions/main.dart';
 import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:meta/meta.dart';
+import 'package:redux/redux.dart';
 
 @immutable
 class TodoDetailState {
@@ -20,18 +20,18 @@ class TodoDetailState {
         todo = Todo();
 }
 
-class TodoDetailReducer {
-  TodoDetailState reducer(TodoDetailState state, ActionType action) {
-    switch (action.runtimeType) {
-      case TodoDetailRequestAction:
-        return state.copyWith(isLoading: true);
-      case TodoDetailSuccessAction:
-        return state.copyWith(isLoading: false, todo: action.payload);
-      case TodoDetailFailureAction:
-        return state.copyWith(isLoading: false);
+final todoDetailReducer = combineReducers<TodoDetailState>([
+  TypedReducer<TodoDetailState, TodoDetailRequestAction>(_onTodoDetailRequest),
+  TypedReducer<TodoDetailState, TodoDetailSuccessAction>(_onTodoDetailSuccess),
+  TypedReducer<TodoDetailState, TodoDetailFailureAction>(_onTodoDetailFailure),
+]);
 
-      default:
-        return state;
-    }
-  }
-}
+TodoDetailState _onTodoDetailRequest(
+        TodoDetailState state, TodoDetailRequestAction action) =>
+    state.copyWith(isLoading: true);
+TodoDetailState _onTodoDetailSuccess(
+        TodoDetailState state, TodoDetailSuccessAction action) =>
+    state.copyWith(isLoading: false, todo: action.payload);
+TodoDetailState _onTodoDetailFailure(
+        TodoDetailState state, TodoDetailFailureAction action) =>
+    state.copyWith(isLoading: false);

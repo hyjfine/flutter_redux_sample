@@ -1,7 +1,7 @@
 import 'package:flutter_app_redux/models/todo.dart';
-import 'package:flutter_app_redux/redux/actions/main.dart';
 import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:meta/meta.dart';
+import 'package:redux/redux.dart';
 
 @immutable
 class TodoListState {
@@ -24,43 +24,50 @@ class TodoListState {
         todoList = [];
 }
 
-class TodoListReducer {
-  TodoListState reducer(TodoListState state, ActionType action) {
-    switch (action.runtimeType) {
-      case TodoListRequestAction:
-        return state.copyWith(isLoading: true);
+final todoListReducer = combineReducers<TodoListState>([
+  TypedReducer<TodoListState, TodoListRequestAction>(_onTodoListRequest),
+  TypedReducer<TodoListState, TodoListSuccessAction>(_onTodoListSuccess),
+  TypedReducer<TodoListState, TodoListFailureAction>(_onTodoListFailure),
+  TypedReducer<TodoListState, UpdateTodoListAction>(_onTodoListUpdate),
+  TypedReducer<TodoListState, TodoPostRequestAction>(_onTodoListPostRequest),
+  TypedReducer<TodoListState, TodoPostSuccessAction>(_onTodoListPostSuccess),
+  TypedReducer<TodoListState, TodoDeleteSuccessAction>(
+      _onTodoListDeleteSuccess),
+]);
 
-      case TodoListSuccessAction:
-        var st =
-            state.copyWith(isLoading: false, todoList: action.payload.data);
-        return st;
+TodoListState _onTodoListRequest(
+        TodoListState state, TodoListRequestAction action) =>
+    state.copyWith(isLoading: true);
+TodoListState _onTodoListSuccess(
+        TodoListState state, TodoListSuccessAction action) =>
+    state.copyWith(isLoading: false, todoList: action.payload.data);
+TodoListState _onTodoListFailure(
+        TodoListState state, TodoListFailureAction action) =>
+    state.copyWith(isLoading: false);
 
-      case TodoListFailureAction:
-        return state.copyWith(isLoading: false);
+TodoListState _onTodoListUpdate(
+    TodoListState state, UpdateTodoListAction action) {
+  List<Todo> list = [];
+  list.addAll(state.todoList);
+  list.firstWhere((item) => item.id == action.payload.id).complete =
+      action.payload.complete;
+  return state.copyWith(todoList: list, isModify: !state.isModify);
+}
 
-      case UpdateTodoListAction:
-        List<Todo> list = [];
-        list.addAll(state.todoList);
+TodoListState _onTodoListPostRequest(
+        TodoListState state, TodoPostRequestAction action) =>
+    state.copyWith(isLoading: true);
 
-        list.firstWhere((item) => item.id == action.payload.id).complete =
-            action.payload.complete;
-        return state.copyWith(todoList: list, isModify: !state.isModify);
+TodoListState _onTodoListPostSuccess(
+    TodoListState state, TodoPostSuccessAction action) {
+  var list = state.todoList;
+  list.add(action.payload);
+  return state.copyWith(isLoading: false, todoList: list);
+}
 
-      case TodoPostRequestAction:
-        return state.copyWith(isLoading: true);
-
-      case TodoPostSuccessAction:
-        var list = state.todoList;
-        list.add(action.payload);
-        return state.copyWith(todoList: list, isLoading: false);
-
-      case TodoDeleteSuccessAction:
-        var list = state.todoList;
-        list.removeWhere((item) => item.id == action.payload.id);
-        return state.copyWith(todoList: list);
-
-      default:
-        return state;
-    }
-  }
+TodoListState _onTodoListDeleteSuccess(
+    TodoListState state, TodoDeleteSuccessAction action) {
+  var list = state.todoList;
+  list.removeWhere((item) => item.id == action.payload.id);
+  return state.copyWith(todoList: list);
 }

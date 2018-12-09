@@ -17,8 +17,8 @@ class StoreContainer {
 }
 
 AppState reduxReducer(AppState state, action) => AppState(
-      todoList: TodoListReducer().reducer(state.todoList, action),
-      todoDetail: TodoDetailReducer().reducer(state.todoDetail, action),
+      todoList: todoListReducer(state.todoList, action),
+      todoDetail: todoDetailReducer(state.todoDetail, action),
     );
 
 Store reduxStore() => Store<AppState>(reduxReducer,
