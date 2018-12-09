@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/screens/todo_list.dart';
-import 'package:flutter_app_redux/services/todo.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 void main() => runApp(MyApp());
@@ -51,17 +51,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
   void _incrementCounter() {
-    TodoApi.postTodoList();
+    StoreContainer.dispatch(PostTodoAction());
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      // _counter++;
     });
   }
 

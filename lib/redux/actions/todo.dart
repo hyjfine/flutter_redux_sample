@@ -18,6 +18,12 @@ class TodoListFailureAction extends ActionType {
   TodoListFailureAction({this.errorInfo}) : super(payload: errorInfo);
 }
 
+class DeleteTodoAction {
+  final String id;
+
+  DeleteTodoAction(this.id);
+}
+
 class TodoDeleteRequestAction extends VoidAction {}
 
 class TodoDeleteSuccessAction extends ActionType {
@@ -31,6 +37,8 @@ class TodoDeleteFailureAction extends ActionType {
 
   TodoDeleteFailureAction({this.errorInfo}) : super(payload: errorInfo);
 }
+
+class PostTodoAction {}
 
 class TodoPostRequestAction extends VoidAction {}
 
@@ -66,6 +74,11 @@ class UpdateTodoListAction extends ActionType {
   UpdateTodoListAction({this.payload}) : super(payload: payload);
 }
 
+class FetchTodoDetailAction {
+  final String id;
+
+  FetchTodoDetailAction(this.id);
+}
 class TodoDetailRequestAction extends VoidAction {}
 
 class TodoDetailSuccessAction extends ActionType {

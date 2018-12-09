@@ -1,3 +1,4 @@
+import 'package:flutter_app_redux/redux/middlewares/main.dart';
 import 'package:flutter_app_redux/redux/reducers/todo_detail.dart';
 import 'package:flutter_app_redux/redux/reducers/todo_list.dart';
 import 'package:meta/meta.dart';
@@ -21,7 +22,9 @@ AppState reduxReducer(AppState state, action) => AppState(
     );
 
 Store reduxStore() => Store<AppState>(reduxReducer,
-    initialState: _initialReduxState(), distinct: true);
+    initialState: initialReduxState(),
+    middleware: initialMiddleware(),
+    distinct: true);
 
 @immutable
 class AppState {
@@ -34,7 +37,7 @@ class AppState {
   });
 }
 
-AppState _initialReduxState() {
+AppState initialReduxState() {
   return AppState(
     todoList: TodoListState.initialState(),
     todoDetail: TodoDetailState.initialState(),

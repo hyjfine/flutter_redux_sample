@@ -6,7 +6,6 @@ import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/screens/todo_detail.dart';
-import 'package:flutter_app_redux/services/todo.dart';
 import 'package:flutter_app_redux/widgets/loading.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -47,7 +46,7 @@ class TodoListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, TodoListViewModel>(
       distinct: true,
-      onInit: (store) => TodoApi.fetchTodoList(),
+      onInit: (store) => store.dispatch(FetchTodoListAction()),
       converter: TodoListViewModel.fromStore,
       builder: (context, vm) =>
           TodoListPresentation(vm: vm, todoList: vm.todoList),
@@ -76,9 +75,8 @@ class TodoListPresentation extends StatelessWidget {
 
         return TodoItem(
           todo: todo,
-          onDismissed: (direction) {
-            TodoApi.deleteTodoList(todo.id);
-          },
+          onDismissed: (direction) =>
+              StoreContainer.dispatch(DeleteTodoAction(todo.id)),
           onTap: () => _onTodoTap(context, todo),
           onCheckboxChanged: (complete) {
             StoreContainer.dispatch(UpdateTodoListAction(

@@ -5,6 +5,8 @@ import 'package:flutter_app_redux/constants/config.dart';
 import 'package:flutter_app_redux/models/request_failure.dart';
 import 'package:flutter_app_redux/redux/actions/main.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
+import 'package:flutter_app_redux/services/todo_detail_repository.dart';
+import 'package:flutter_app_redux/services/todo_list_repository.dart';
 import 'package:flutter_app_redux/utils/datetime_util.dart';
 import 'package:flutter_app_redux/utils/print_util.dart';
 
@@ -25,10 +27,10 @@ class Services {
   /// success action
   /// failure action
   static asyncRequest(
-    Future<Response> apiFuture,
-    ActionType request,
-    ActionType Function(dynamic) success,
-    ActionType Function(RequestFailureInfo) failure,
+    Future<Response> Function() apiFuture,
+    dynamic request,
+    dynamic Function(dynamic) success,
+    dynamic Function(RequestFailureInfo) failure,
   ) async {
     StoreContainer.global.dispatch(request);
     final requestBegin = DateTimeUtil.dateTimeNowMilli();
@@ -37,7 +39,7 @@ class Services {
       PrintUtil.print(
           '======================  START  =============================================================================================');
       PrintUtil.print('');
-      final response = await apiFuture;
+      final response = await apiFuture();
       if (response.request != null) {
         PrintUtil.print(response.request.baseUrl +
             response.request.path); // 下载的request为null
@@ -66,7 +68,7 @@ class Services {
       PrintUtil.print(
           '==================  ${success(response.data).runtimeType}  ====  END  ===============================================================================================');
       PrintUtil.print('');
-      StoreContainer.global.dispatch(success(response.data));
+      StoreContainer.global.dispatch(success(response?.data));
     } on DioError catch (error) {
       var message = '';
       var code = '-1';
@@ -179,4 +181,8 @@ class Services {
       StoreContainer.global.dispatch(failure(model));
     }
   }
+}
+
+class AppRepository with TodoListRepository, TodoDetailRepository {
+  AppRepository();
 }

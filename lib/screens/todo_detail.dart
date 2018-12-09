@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/redux/actions/todo.dart';
 import 'package:flutter_app_redux/redux/reducers/main.dart';
-import 'package:flutter_app_redux/services/todo.dart';
 import 'package:flutter_app_redux/widgets/loading.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -29,7 +29,7 @@ class TodoDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, TodoDetailViewModel>(
-      onInit: (store) => TodoApi.fetchTodoDetail(id),
+      onInit: (store) => store.dispatch(FetchTodoDetailAction(id)),
       converter: TodoDetailViewModel.fromStore,
       builder: (context, vm) => TodoDetailPresentation(vm: vm),
     );
