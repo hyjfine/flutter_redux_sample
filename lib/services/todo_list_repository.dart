@@ -8,11 +8,11 @@ class TodoListRepository {
     return Services.rest.get('/api/v1/todo');
   }
 
-  Future<Response> deleteTodoList(String id) {
+  static Future<Response> deleteTodoList(String id) {
     return Services.rest.delete('/api/v1/todo/$id');
   }
 
-  Future<Response> postTodoList() {
+  static Future<Response> postTodoList() {
     return Services.rest.post('/api/v1/todo/');
   }
 }
