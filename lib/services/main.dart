@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_app_redux/constants/config.dart';
 import 'package:flutter_app_redux/models/request_failure.dart';
 import 'package:flutter_app_redux/redux/actions/main.dart';
@@ -27,12 +28,14 @@ class Services {
   /// success action
   /// failure action
   static asyncRequest(
+    Dispatch dispatch,
     Future<Response> Function() apiFuture,
     dynamic request,
     dynamic Function(dynamic) success,
     dynamic Function(RequestFailureInfo) failure,
   ) async {
-    StoreContainer.global.dispatch(request);
+//    StoreContainer.global.dispatch(request);
+    dispatch(request);
     final requestBegin = DateTimeUtil.dateTimeNowMilli();
     try {
       PrintUtil.print('');
@@ -68,7 +71,8 @@ class Services {
       PrintUtil.print(
           '==================  ${success(response.data).runtimeType}  ====  END  ===============================================================================================');
       PrintUtil.print('');
-      StoreContainer.global.dispatch(success(response?.data));
+//      StoreContainer.global.dispatch(success(response?.data));
+      dispatch(success(response?.data));
     } on DioError catch (error) {
       var message = '';
       var code = '-1';
@@ -102,17 +106,18 @@ class Services {
       PrintUtil.print(
           '==================  ${failure(model).runtimeType}  ====  END  =======================================================================================================');
       PrintUtil.print('');
-      StoreContainer.global.dispatch(failure(model));
+//      StoreContainer.global.dispatch(failure(model));
+      dispatch(failure(model));
     }
   }
 
   static asyncMultipleRequest(
     List<Future<Response>> apiFutures,
-    ActionType request,
-    ActionType Function(dynamic) success,
-    ActionType Function(dynamic) failure,
+      dynamic request,
+      dynamic Function(dynamic) success,
+      dynamic Function(dynamic) failure,
   ) async {
-    StoreContainer.global.dispatch(request);
+//    StoreContainer.global.dispatch(request);
     try {
       List<dynamic> responses = await Future.wait(apiFutures);
       final successAction =
@@ -144,7 +149,7 @@ class Services {
       PrintUtil.print(
           '==================  ${successAction.runtimeType}  ====  END  ========================================================================================================');
       PrintUtil.print('');
-      StoreContainer.global.dispatch(successAction);
+//      StoreContainer.global.dispatch(successAction);
     } on DioError catch (error) {
       var message = '';
       var code = Services.defaultCode;
@@ -178,7 +183,7 @@ class Services {
       PrintUtil.print(
           '==================  ${failure(model).runtimeType}====  END  =======================================================================================================');
       PrintUtil.print('');
-      StoreContainer.global.dispatch(failure(model));
+//      StoreContainer.global.dispatch(failure(model));
     }
   }
 }
