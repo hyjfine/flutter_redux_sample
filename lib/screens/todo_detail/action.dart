@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'state.dart';
+import 'package:flutter_app_redux/models/request_failure.dart';
+import 'package:flutter_app_redux/models/todo.dart';
 
 enum TodoDetailAction { fetch, request, success, failure }
 
@@ -15,11 +16,11 @@ class TodoDetailActionCreator {
     return Action(TodoDetailAction.request);
   }
 
-  static Action success(TodoDetailState state) {
-    return Action(TodoDetailAction.success, payload: state);
+  static Action success(Todo todo) {
+    return Action(TodoDetailAction.success, payload: todo);
   }
 
-  static Action failure() {
-    return Action(TodoDetailAction.failure);
+  static Action failure(RequestFailureInfo error) {
+    return Action(TodoDetailAction.failure, payload: error);
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_app_redux/models/todo.dart';
 class TodoDetailState implements Cloneable<TodoDetailState> {
   bool isLoading;
   Todo todo;
+  String id;
 
   @override
   TodoDetailState clone() {
@@ -13,9 +14,11 @@ class TodoDetailState implements Cloneable<TodoDetailState> {
   }
 }
 
-TodoDetailState initState(Todo todo) {
+TodoDetailState initState(String id) {
+  print("------initState id $id");
   final TodoDetailState state = TodoDetailState();
   state.isLoading = false;
-  state.todo = todo;
+  state.id = id;
+  state.todo = Todo();
   return state;
 }

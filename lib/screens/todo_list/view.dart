@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/screens/todo_detail/page.dart';
 import 'package:flutter_app_redux/screens/todo_list/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/state.dart';
 import 'package:flutter_app_redux/widgets/loading.dart';
@@ -18,8 +19,12 @@ Widget buildView(
 
         return TodoItem(
           todo: todo,
-          onDismissed: (direction) => {},
-          onTap: () => {},
+          onDismissed: (direction) =>
+              dispatch(TodoListActionCreator.delete(todo.id)),
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => TodoDetailPage(todo.id).buildPage(null))),
           onCheckboxChanged: (complete) {},
         );
       },
