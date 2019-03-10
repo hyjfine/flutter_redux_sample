@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app_redux/services/main.dart';
 
 class TodoListRepository {
-  Future<Response> fetchTodoList() {
+  static Future<Response> fetchTodoList() {
     return Services.rest.get('/api/v1/todo');
   }
 

@@ -25,6 +25,6 @@ TodoListState _failure(TodoListState state, Action action) {
 TodoListState _success(TodoListState state, Action action) {
   final TodoListState newState = state.clone();
   newState.isLoading = false;
-  newState.todoList = action.payload ?? newState.todoList;
+  newState.todoList = action.payload.data ?? newState.todoList;
   return newState;
 }

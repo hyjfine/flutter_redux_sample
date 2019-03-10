@@ -26,8 +26,13 @@ Widget buildView(
   }
 
   return Scaffold(
-    appBar: AppBar(title: Text("bbbbb")),
+    appBar: AppBar(title: Text('todo list')),
     body: state.isLoading ? Loading() : _buildListView(),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {},
+      tooltip: 'add',
+      child: Icon(Icons.add),
+    ),
   );
 }
 

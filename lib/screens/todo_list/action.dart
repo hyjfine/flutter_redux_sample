@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter_app_redux/screens/todo_list/state.dart';
+import 'package:flutter_app_redux/models/todo.dart';
 
 enum TodoListAction { fetch, request, success, failure }
 
@@ -12,8 +12,8 @@ class TodoListActionCreator {
     return Action(TodoListAction.request);
   }
 
-  static Action success(TodoListState state) {
-    return Action(TodoListAction.success, payload: state);
+  static Action success(TodoList todoList) {
+    return Action(TodoListAction.success, payload: todoList);
   }
 
   static Action failure() {
