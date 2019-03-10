@@ -42,8 +42,8 @@ void _update(Action action, Context<TodoListState> ctx) {}
 void _delete(Action action, Context<TodoListState> ctx) {
   Services.asyncRequest(
       ctx.dispatch,
-      () => TodoListRepository.fetchTodoList(),
-      TodoListActionCreator.request(),
-      (json) => TodoListActionCreator.success(TodoList.fromJson(json)),
-      (errorInfo) => TodoListActionCreator.failure());
+      () => TodoListRepository.deleteTodoList(action.payload),
+      TodoListActionCreator.deleteRequest(),
+      (json) => TodoListActionCreator.deleteSuccess(Todo.fromJson(json)),
+      (errorInfo) => TodoListActionCreator.deleteFailure(errorInfo));
 }

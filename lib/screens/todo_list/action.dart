@@ -39,7 +39,7 @@ class TodoListActionCreator {
   }
 
   static Action delete(String id) {
-    return Action(TodoListAction.delete);
+    return Action(TodoListAction.delete, payload: id);
   }
 
   static Action deleteRequest() {
