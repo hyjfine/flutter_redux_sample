@@ -2,6 +2,8 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/screens/todo_list/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/list_adapter/action.dart';
+import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart'
+    as a;
 import 'package:flutter_app_redux/screens/todo_list/state.dart';
 
 Reducer<TodoListState> buildReducer() {
@@ -14,7 +16,7 @@ Reducer<TodoListState> buildReducer() {
 TodoListState _add(TodoListState state, Action action) {
   final Todo todo = action.payload;
   final TodoListState newState = state.clone();
-  newState.todoList.add(todo);
+  newState.todoList.add(a.initState(todo));
 
   return newState;
 }
@@ -22,6 +24,6 @@ TodoListState _add(TodoListState state, Action action) {
 TodoListState _delete(TodoListState state, Action action) {
   final String key = action.payload;
   final TodoListState newState = state.clone();
-  newState.todoList.removeWhere((todo) => todo.id == key);
+  newState.todoList.removeWhere((todoState) => todoState.todo.id == key);
   return newState;
 }

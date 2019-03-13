@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/screens/todo_list/state.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/component.dart';
+import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart';
 
 class TodoListAdapter extends DynamicFlowAdapter<TodoListState> {
   TodoListAdapter()
@@ -18,7 +19,7 @@ class _TodoListConnector implements Connector<TodoListState, List<ItemBean>> {
   List<ItemBean> get(TodoListState state) {
     if (state.todoList?.isNotEmpty == true) {
       return state.todoList
-          .map<ItemBean>((Todo data) => ItemBean('todo', data))
+          .map<ItemBean>((TodoState data) => ItemBean('todo', data))
           .toList(growable: true);
     } else {
       return <ItemBean>[];
@@ -28,10 +29,10 @@ class _TodoListConnector implements Connector<TodoListState, List<ItemBean>> {
   @override
   void set(TodoListState state, List<ItemBean> todoList) {
     if (todoList?.isNotEmpty == true) {
-      state.todoList = List<Todo>.from(
+      state.todoList = List<TodoState>.from(
           todoList.map<Todo>((ItemBean bean) => bean.data).toList());
     } else {
-      state.todoList = <Todo>[];
+      state.todoList = <TodoState>[];
     }
   }
 }

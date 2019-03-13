@@ -1,10 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart';
 
 class TodoListState implements Cloneable<TodoListState> {
   bool isLoading;
   bool isModify;
-  List<Todo> todoList;
+  List<TodoState> todoList;
 
   @override
   TodoListState clone() {

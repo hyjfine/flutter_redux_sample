@@ -13,10 +13,10 @@ class TodoState implements Cloneable<TodoState> {
   }
 }
 
-TodoState initState(String id) {
-  print("------initState id $id");
+TodoState initState(Todo todo) {
+  print("------initState id $todo");
   final TodoState state = TodoState();
   state.isLoading = false;
-  state.todo = Todo();
+  state.todo = todo;
   return state;
 }
