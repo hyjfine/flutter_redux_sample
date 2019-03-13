@@ -10,30 +10,44 @@ import 'package:flutter_app_redux/widgets/loading.dart';
 Widget buildView(
     TodoListState state, Dispatch dispatch, ViewService viewService) {
   List<Todo> todoList = state.todoList;
-  ListView _buildListView() {
-    return ListView.builder(
-      key: UniqueKey(),
-      itemCount: todoList.length,
-      itemBuilder: (BuildContext context, int index) {
-        final todo = todoList[index];
+//  ListView _buildListView() {
+//    return ListView.builder(
+//      key: UniqueKey(),
+//      itemCount: todoList.length,
+//      itemBuilder: (BuildContext context, int index) {
+//        final todo = todoList[index];
+//
+//        return TodoItem(
+//          todo: todo,
+//          onDismissed: (direction) =>
+//              dispatch(TodoListActionCreator.delete(todo.id)),
+//          onTap: () => Navigator.push(
+//              context,
+//              MaterialPageRoute(
+//                  builder: (_) => TodoDetailPage(todo.id).buildPage(null))),
+//          onCheckboxChanged: (complete) {},
+//        );
+//      },
+//    );
+//  }
 
-        return TodoItem(
-          todo: todo,
-          onDismissed: (direction) =>
-              dispatch(TodoListActionCreator.delete(todo.id)),
-          onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => TodoDetailPage(todo.id).buildPage(null))),
-          onCheckboxChanged: (complete) {},
-        );
-      },
+  Widget _buildBody() {
+    final ListAdapter adapter = viewService.buildAdapter();
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+                itemBuilder: adapter.itemBuilder, itemCount: adapter.itemCount),
+          )
+        ],
+      ),
     );
   }
 
   return Scaffold(
     appBar: AppBar(title: Text('todo list')),
-    body: state.isLoading ? Loading() : _buildListView(),
+    body: state.isLoading ? Loading() : _buildBody(),
     floatingActionButton: FloatingActionButton(
       onPressed: () => dispatch(TodoListActionCreator.add()),
       tooltip: 'add',
