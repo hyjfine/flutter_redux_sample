@@ -8,9 +8,6 @@ enum TodoAction {
   deleteSuccess,
   deleteFailure,
   update,
-//  updateRequest,
-//  updateSuccess,
-//  updateFailure
 }
 
 class TodoActionCreator {
@@ -33,16 +30,4 @@ class TodoActionCreator {
   static Action update(Todo todo) {
     return Action(TodoAction.update, payload: todo);
   }
-
-//  static Action updateRequest() {
-//    return Action(TodoAction.updateRequest);
-//  }
-//
-//  static Action updateSuccess(Todo todo) {
-//    return Action(TodoAction.updateSuccess, payload: todo);
-//  }
-//
-//  static Action updateFailure(RequestFailureInfo error) {
-//    return Action(TodoAction.updateFailure, payload: error);
-//  }
 }
