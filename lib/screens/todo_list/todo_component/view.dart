@@ -2,13 +2,30 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/screens/todo_detail/page.dart';
+import 'package:flutter_app_redux/screens/todo_list/action.dart';
+import 'package:flutter_app_redux/screens/todo_list/todo_component/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart';
 
 Widget buildView(TodoState state, Dispatch dispatch, ViewService viewService) {
   return TodoItem(
-      onDismissed: (di) {},
-      onTap: () {},
-      onCheckboxChanged: (complete) {},
+      onDismissed: (_) => dispatch(TodoActionCreator.delete(state.todo.id)),
+      onTap: () => Navigator.push(
+          viewService.context,
+          MaterialPageRoute(
+              builder: (_) => TodoDetailPage(state.todo.id).buildPage(null))),
+      onCheckboxChanged: (complete) {
+//        dispatch(
+//          TodoListActionCreator.update(Todo(
+//              task: state.todo.task,
+//              id: state.todo.id,
+//              note: state.todo.note,
+//              complete: complete)),
+//        );
+
+        dispatch(TodoActionCreator.update(state.todo.id));
+        print("-----$complete");
+      },
       todo: state.todo);
 }
 

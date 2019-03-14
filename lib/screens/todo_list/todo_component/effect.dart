@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_app_redux/models/todo.dart';
+import 'package:flutter_app_redux/screens/todo_list/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart';
 import 'package:flutter_app_redux/services/main.dart';
@@ -16,7 +17,7 @@ void _delete(Action action, Context<TodoState> ctx) {
   Services.asyncRequest(
       ctx.dispatch,
       () => TodoListRepository.deleteTodoList(action.payload),
-      TodoActionCreator.deleteRequest(),
-      (json) => TodoActionCreator.deleteSuccess(Todo.fromJson(json)),
-      (errorInfo) => TodoActionCreator.deleteFailure(errorInfo));
+      TodoListActionCreator.deleteRequest(),
+      (json) => TodoListActionCreator.deleteSuccess(Todo.fromJson(json)),
+      (errorInfo) => TodoListActionCreator.deleteFailure(errorInfo));
 }

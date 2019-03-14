@@ -57,7 +57,7 @@ TodoListState _addSuccess(TodoListState state, Action action) {
   final TodoListState newState = state.clone();
   newState.isLoading = false;
   var list = newState.todoList;
-  list.add(action.payload);
+  list.add(todoComponent.initState(action.payload));
   newState.todoList = list;
   return newState;
 }

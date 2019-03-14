@@ -15,10 +15,6 @@ enum TodoListAction {
   addRequest,
   addSuccess,
   addFailure,
-  update,
-  updateRequest,
-  updateSuccess,
-  updateFailure
 }
 
 class TodoListActionCreator {
@@ -68,21 +64,5 @@ class TodoListActionCreator {
 
   static Action addFailure(RequestFailureInfo error) {
     return Action(TodoListAction.addFailure, payload: error);
-  }
-
-  static Action update() {
-    return Action(TodoListAction.update);
-  }
-
-  static Action updateRequest() {
-    return Action(TodoListAction.updateRequest);
-  }
-
-  static Action updateSuccess(Todo todo) {
-    return Action(TodoListAction.updateSuccess, payload: todo);
-  }
-
-  static Action updateFailure(RequestFailureInfo error) {
-    return Action(TodoListAction.updateFailure, payload: error);
   }
 }

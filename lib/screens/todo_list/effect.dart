@@ -10,7 +10,6 @@ Effect<TodoListState> buildEffect() {
     Lifecycle.initState: _init,
     TodoListAction.fetch: _fetch,
     TodoListAction.add: _add,
-    TodoListAction.update: _update,
     TodoListAction.delete: _delete,
   });
 }
@@ -36,8 +35,6 @@ void _add(Action action, Context<TodoListState> ctx) {
       (json) => TodoListActionCreator.addSuccess(Todo.fromJson(json)),
       (errorInfo) => TodoListActionCreator.addFailure(errorInfo));
 }
-
-void _update(Action action, Context<TodoListState> ctx) {}
 
 void _delete(Action action, Context<TodoListState> ctx) {
   Services.asyncRequest(

@@ -30,7 +30,7 @@ class _TodoListConnector implements Connector<TodoListState, List<ItemBean>> {
   void set(TodoListState state, List<ItemBean> todoList) {
     if (todoList?.isNotEmpty == true) {
       state.todoList = List<TodoState>.from(
-          todoList.map<Todo>((ItemBean bean) => bean.data).toList());
+          todoList.map<TodoState>((ItemBean bean) => bean.data).toList());
     } else {
       state.todoList = <TodoState>[];
     }
