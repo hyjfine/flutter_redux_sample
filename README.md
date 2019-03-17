@@ -43,5 +43,5 @@ flutter packges get
 
 ### 引用
 
-感谢Redux dart的作者以及他提供的[例子](https://github.com/brianegan/flutter_architecture_samples)，详细文档可以查阅[Flutter Redux 食用总结](https://juejin.im/post/5bf95aaa51882516e1542e31)。
-感谢咸鱼团队的Fish Redux，使用文档[Fish Redux 使用指南](http://www.heyongjian.com/2019/03/16/2019/Fish%20redux/)
+- 感谢Redux dart的作者以及他提供的[例子](https://github.com/brianegan/flutter_architecture_samples)，详细文档可以查阅[Flutter Redux 食用总结](https://juejin.im/post/5bf95aaa51882516e1542e31)。
+- 感谢咸鱼团队的Fish Redux，使用文档[Fish Redux 使用指南](http://www.heyongjian.com/2019/03/16/2019/Fish%20redux/)
