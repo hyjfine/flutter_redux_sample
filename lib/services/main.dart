@@ -4,8 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_app_redux/constants/config.dart';
 import 'package:flutter_app_redux/models/request_failure.dart';
-import 'package:flutter_app_redux/redux/actions/main.dart';
-import 'package:flutter_app_redux/redux/reducers/main.dart';
 import 'package:flutter_app_redux/services/todo_detail_repository.dart';
 import 'package:flutter_app_redux/services/todo_list_repository.dart';
 import 'package:flutter_app_redux/utils/datetime_util.dart';
@@ -34,7 +32,6 @@ class Services {
     dynamic Function(dynamic) success,
     dynamic Function(RequestFailureInfo) failure,
   ) async {
-//    StoreContainer.global.dispatch(request);
     dispatch(request);
     final requestBegin = DateTimeUtil.dateTimeNowMilli();
     try {
@@ -71,7 +68,6 @@ class Services {
       PrintUtil.print(
           '==================  ${success(response.data).runtimeType}  ====  END  ===============================================================================================');
       PrintUtil.print('');
-//      StoreContainer.global.dispatch(success(response?.data));
       dispatch(success(response?.data));
     } on DioError catch (error) {
       var message = '';
@@ -106,7 +102,6 @@ class Services {
       PrintUtil.print(
           '==================  ${failure(model).runtimeType}  ====  END  =======================================================================================================');
       PrintUtil.print('');
-//      StoreContainer.global.dispatch(failure(model));
       dispatch(failure(model));
     }
   }
