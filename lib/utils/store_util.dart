@@ -39,19 +39,23 @@ Reducer<AppState> buildReducer() {
 
 AppState _login(AppState state, Action action) {
   final AppState newState = state.clone();
+
+  newState.userName = action.payload['name'];
+  newState.token = action.payload['token'];
+
   return newState;
 }
 
 AppState _logout(AppState state, Action action) {
-  final AppState newState = state.clone();
+  final AppState newState = initState('empty');
   return newState;
 }
 
 enum AppAction { login, logout }
 
 class AppActionCreator {
-  static Action login() {
-    return Action(AppAction.login);
+  static Action login(String name, String token) {
+    return Action(AppAction.login, payload: {'name': name, 'token': token});
   }
 
   static Action logout() {

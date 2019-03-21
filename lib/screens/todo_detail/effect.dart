@@ -4,6 +4,7 @@ import 'package:flutter_app_redux/screens/todo_detail/action.dart';
 import 'package:flutter_app_redux/screens/todo_detail/state.dart';
 import 'package:flutter_app_redux/services/main.dart';
 import 'package:flutter_app_redux/services/todo_detail_repository.dart';
+import 'package:flutter_app_redux/utils/store_util.dart';
 
 Effect<TodoDetailState> buildEffect() {
   return combineEffects(<Object, Effect<TodoDetailState>>{
@@ -17,6 +18,7 @@ void _init(Action action, Context<TodoDetailState> ctx) {
 }
 
 void _fetch(Action action, Context<TodoDetailState> ctx) {
+  StoreUtil.globalStore.dispatch(AppActionCreator.logout());
   Services.asyncRequest(
       ctx.dispatch,
       () => TodoDetailRepository.fetchTodo(action.payload),
