@@ -15,7 +15,7 @@ class TodoListPage extends Page<TodoListState, Map<String, dynamic>> {
           dependencies: Dependencies<TodoListState>(
             adapter: TodoListAdapter(),
           ),
-          middlewares: <Middleware<TodoListState>>[
+          middleware: <Middleware<TodoListState>>[
             logMiddleware(tag: 'TodoListPage'),
           ],
         );

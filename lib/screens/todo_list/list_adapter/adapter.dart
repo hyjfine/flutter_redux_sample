@@ -13,7 +13,7 @@ class TodoListAdapter extends DynamicFlowAdapter<TodoListState> {
         );
 }
 
-class _TodoListConnector implements Connector<TodoListState, List<ItemBean>> {
+class _TodoListConnector extends ConnOp<TodoListState, List<ItemBean>> {
   @override
   List<ItemBean> get(TodoListState state) {
     if (state.todoList?.isNotEmpty == true) {

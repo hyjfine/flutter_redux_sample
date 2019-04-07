@@ -11,7 +11,7 @@ class TodoDetailPage extends Page<TodoDetailState, String> {
           effect: buildEffect(),
           reducer: buildReducer(),
           view: buildView,
-          middlewares: <Middleware<TodoDetailState>>[
+          middleware: <Middleware<TodoDetailState>>[
             logMiddleware(tag: 'TodoDetailPage'),
           ],
         );
