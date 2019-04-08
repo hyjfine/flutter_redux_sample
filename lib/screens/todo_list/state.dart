@@ -28,7 +28,6 @@ class AppState implements Cloneable<AppState> {
   TodoListState todoListState;
   TodoDetailState todoDetailState;
 
-
   AppState(this.todoListState, this.todoDetailState);
 
   @override
@@ -46,7 +45,15 @@ class TodoListConn extends ConnOp<AppState, TodoListState> {
   TodoListState get(AppState state) => state.todoListState;
 
   @override
-  void set(AppState state, TodoListState subState) {
-    state.todoListState = subState;
-  }
+  void set(AppState state, TodoListState subState) =>
+      state.todoListState = subState;
+}
+
+class TodoDetailConn extends ConnOp<AppState, TodoDetailState> {
+  @override
+  TodoDetailState get(AppState state) => state.todoDetailState;
+
+  @override
+  void set(AppState state, TodoDetailState subState) =>
+      state.todoDetailState = subState;
 }

@@ -4,10 +4,10 @@ import 'package:flutter_app_redux/screens/todo_detail/reducer.dart';
 import 'package:flutter_app_redux/screens/todo_detail/state.dart';
 import 'package:flutter_app_redux/screens/todo_detail/view.dart';
 
-class TodoDetailPage extends Page<TodoDetailState, String> {
-  TodoDetailPage(String id)
+class TodoDetailPage extends Page<TodoDetailState, Map<String, dynamic>> {
+  TodoDetailPage()
       : super(
-          initState: (_) => initState(id),
+          initState: initState,
           effect: buildEffect(),
           reducer: buildReducer(),
           view: buildView,

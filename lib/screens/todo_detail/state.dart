@@ -14,11 +14,10 @@ class TodoDetailState implements Cloneable<TodoDetailState> {
   }
 }
 
-TodoDetailState initState(String id) {
-  print("------initState id $id");
+TodoDetailState initState(Map<String, dynamic> map) {
   final TodoDetailState state = TodoDetailState();
   state.isLoading = false;
-  state.id = id;
+  state.id = '0';
   state.todo = Todo();
   return state;
 }

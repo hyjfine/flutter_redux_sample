@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_redux/app_route.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
 import 'package:flutter_app_redux/screens/todo_detail/page.dart';
@@ -12,7 +13,8 @@ Widget buildView(TodoState state, Dispatch dispatch, ViewService viewService) {
       onTap: () => Navigator.push(
           viewService.context,
           MaterialPageRoute(
-              builder: (_) => TodoDetailPage(state.todo.id).buildPage(null))),
+              builder: (_) => AppRoute.global
+                  .buildPage('todo_detail', {'id': state.todo.id}))),
       onCheckboxChanged: (complete) {
         dispatch(TodoActionCreator.update(state.todo.id));
         print("-----$complete");
