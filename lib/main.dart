@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_redux/app_route.dart';
 import 'package:flutter_app_redux/screens/todo_list/page.dart';
 
 void main() => runApp(MyApp());
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: TodoListPage().buildPage(<String, dynamic>{}),
+//      home: TodoListPage().buildPage(<String, dynamic>{}),
+      home: AppRoute.global.buildPage('todo_list', null),
 //      ),
     );
   }
