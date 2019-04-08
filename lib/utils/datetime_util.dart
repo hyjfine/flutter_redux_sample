@@ -1,5 +1,3 @@
-
-
 class DateTimeUtil {
   static String dateTimeNowIso() => DateTime.now().toIso8601String();
 

@@ -108,9 +108,9 @@ class Services {
 
   static asyncMultipleRequest(
     List<Future<Response>> apiFutures,
-      dynamic request,
-      dynamic Function(dynamic) success,
-      dynamic Function(dynamic) failure,
+    dynamic request,
+    dynamic Function(dynamic) success,
+    dynamic Function(dynamic) failure,
   ) async {
 //    StoreContainer.global.dispatch(request);
     try {

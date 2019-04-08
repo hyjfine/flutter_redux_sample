@@ -29,7 +29,8 @@ void _fetch(Action action, Context<TodoListState> ctx) {
 }
 
 void _add(Action action, Context<TodoListState> ctx) {
-  StoreUtil.globalStore.dispatch(AppActionCreator.login('effect', 'token success!'));
+  StoreUtil.globalStore
+      .dispatch(AppActionCreator.login('effect', 'token success!'));
   Services.asyncRequest(
       ctx.dispatch,
       () => TodoListRepository.postTodoList(),

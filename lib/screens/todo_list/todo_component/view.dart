@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_redux/app_route.dart';
 import 'package:flutter_app_redux/constants/keys.dart';
 import 'package:flutter_app_redux/models/todo.dart';
-import 'package:flutter_app_redux/screens/todo_detail/page.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/todo_component/state.dart';
 
