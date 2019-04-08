@@ -17,6 +17,7 @@ Language: [中文简体](https://github.com/hyjfine/flutter_redux_sample) | [Eng
   - plus：Redux加入MiddleWare，Reducer利用combineReducers裁成更小粒度，方便对reducer写UT。复杂度有所提升，但在结构上更严谨，也方便利用更全面的UT保证软件在迭代中的质量。
   - fish-redux: 利用Fish Redux重构Demo，基本的action，effect，page，view都有用到。最大优点是对分治体现还不破坏redux的状态集中管理。
   - fish-redux-adapter：在fish-redux的基础上用adapter去实现list，这可能是fish-redux的亮点和优势对比flutter redux。
+  - fish-redux-route：在fish-redux的基础上,使用AppRoute作为全局Store管理应用状态。
 
 ### 库依赖
 
@@ -45,3 +46,4 @@ flutter packges get
 
 - 感谢Redux dart的作者以及他提供的[例子](https://github.com/brianegan/flutter_architecture_samples)，详细文档可以查阅[Flutter Redux 食用总结](https://juejin.im/post/5bf95aaa51882516e1542e31)。
 - 感谢咸鱼团队的Fish Redux，使用文档[Fish Redux 使用指南](http://www.heyongjian.com/2019/03/16/2019/Fish%20redux/)
+- 感谢吉丰提供的Route科技，使用文档[Fish Redux 全局Store-AppRoute使用指南](https://juejin.im/post/5cab73325188251b1542f974)
