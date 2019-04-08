@@ -13,7 +13,7 @@ Widget buildView(TodoState state, Dispatch dispatch, ViewService viewService) {
           viewService.context,
           MaterialPageRoute(
               builder: (_) => AppRoute.global
-                  .buildPage('todo_detail', {'id': state.todo.id}))),
+                  .buildPage(RoutePath.todoDetail, {'id': state.todo.id}))),
       onCheckboxChanged: (complete) {
         dispatch(TodoActionCreator.update(state.todo.id));
         print("-----$complete");

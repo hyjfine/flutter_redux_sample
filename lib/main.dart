@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AppRoute.global.buildPage('todo_list', null),
+      home: AppRoute.global.buildPage(RoutePath.todoList, null),
 //      ),
     );
   }
