@@ -4,7 +4,6 @@ import 'package:flutter_app_redux/screens/todo_list/action.dart';
 import 'package:flutter_app_redux/screens/todo_list/state.dart';
 import 'package:flutter_app_redux/services/main.dart';
 import 'package:flutter_app_redux/services/todo_list_repository.dart';
-import 'package:flutter_app_redux/utils/store_util.dart';
 
 Effect<TodoListState> buildEffect() {
   return combineEffects(<Object, Effect<TodoListState>>{
@@ -29,8 +28,6 @@ void _fetch(Action action, Context<TodoListState> ctx) {
 }
 
 void _add(Action action, Context<TodoListState> ctx) {
-  StoreUtil.globalStore
-      .dispatch(AppActionCreator.login('effect', 'token success!'));
   Services.asyncRequest(
       ctx.dispatch,
       () => TodoListRepository.postTodoList(),
