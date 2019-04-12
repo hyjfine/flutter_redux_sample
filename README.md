@@ -9,7 +9,7 @@ Language: [中文简体](https://github.com/hyjfine/flutter_redux_sample) | [Eng
 
 ### 文件结构
 
-  <img align="left" width="375" height="327" src="http://me.wozaihui.com/hyj-doc-flutter-demo-files.jpg">
+  <img align="left" width="375" height="327" src="http://doc.heyongjian.cn/hyj-doc-flutter-demo-run.gif">
 
 ### 分支
 
