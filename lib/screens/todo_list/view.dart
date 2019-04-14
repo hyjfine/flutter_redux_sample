@@ -8,6 +8,7 @@ Widget buildView(
     TodoListState state, Dispatch dispatch, ViewService viewService) {
   Widget _buildBody() {
     final ListAdapter adapter = viewService.buildAdapter();
+    println("------buildView ${adapter.toString()}  || ${adapter.itemCount}");
     return Container(
       child: Column(
         children: <Widget>[

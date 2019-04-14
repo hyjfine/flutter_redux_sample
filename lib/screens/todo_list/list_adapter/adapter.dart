@@ -11,6 +11,11 @@ class TodoListAdapter extends DynamicFlowAdapter<TodoListState> {
           },
           connector: _TodoListConnector(),
         );
+
+  @override
+  String toString() {
+    return "TodoListAdapter ${this}";
+  }
 }
 
 class _TodoListConnector extends ConnOp<TodoListState, List<ItemBean>> {
