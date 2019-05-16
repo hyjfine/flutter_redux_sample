@@ -8,7 +8,7 @@ class AppRoute {
 
   static AbstractRoutes get global {
     if (_global == null) {
-      _global = AppRoutes(preloadedState: AppState.initialState(), pages: {
+      _global = AppRoutes(preloadedState: AppState.initialState(), slots: {
         // 这里有两种写法，效果是一样的，带操作符的写法比较生动，也简短些。
         // RoutePath.todoList: TodoListPage().asDependent(TodoListConn()),
         RoutePath.todoList: TodoListConn() + TodoListPage(),
