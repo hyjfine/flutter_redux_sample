@@ -13,7 +13,7 @@ class TodoListPage extends Page<TodoListState, Map<String, dynamic>> {
           reducer: buildReducer(),
           view: buildView,
           dependencies: Dependencies<TodoListState>(
-            adapter: TodoListAdapter(),
+            adapter: NoneConn<TodoListState>() + TodoListAdapter(),
           ),
           middleware: <Middleware<TodoListState>>[
             logMiddleware(tag: 'TodoListPage'),

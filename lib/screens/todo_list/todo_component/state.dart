@@ -11,6 +11,7 @@ class TodoState implements Cloneable<TodoState> {
       ..isLoading = isLoading
       ..todo = todo;
   }
+
 }
 
 TodoState initState(Todo todo) {

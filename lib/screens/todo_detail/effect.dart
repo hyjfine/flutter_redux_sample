@@ -13,6 +13,8 @@ Effect<TodoDetailState> buildEffect() {
 }
 
 void _init(Action action, Context<TodoDetailState> ctx) {
+  print("------init");
+  print(ctx.state.toString());
   ctx.dispatch(TodoDetailActionCreator.fetch(ctx.state.id));
 }
 

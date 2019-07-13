@@ -4,7 +4,7 @@ import 'package:flutter_app_redux/screens/todo_detail/state.dart';
 
 Reducer<TodoDetailState> buildReducer() {
   return asReducer<TodoDetailState>(<Object, Reducer<TodoDetailState>>{
-    RouteAction.route: _route,
+//    RouteAction.route: _route,
     TodoDetailAction.request: _request,
     TodoDetailAction.failure: _failure,
     TodoDetailAction.success: _success,
