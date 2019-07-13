@@ -12,6 +12,11 @@ class TodoState implements Cloneable<TodoState> {
       ..todo = todo;
   }
 
+  @override
+  String toString() {
+    return 'TodoState{isLoading: $isLoading, todo: $todo}';
+  }
+
 }
 
 TodoState initState(Todo todo) {

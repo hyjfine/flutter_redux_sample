@@ -19,15 +19,12 @@ class TodoDetailState implements Cloneable<TodoDetailState> {
     return 'TodoDetailState{isLoading: $isLoading, todo: $todo, id: $id}';
   }
 
-
 }
 
 TodoDetailState initState(TodoState map) {
-  print("-----intiState");
-  print(map);
   final TodoDetailState state = TodoDetailState();
   state.isLoading = false;
-  state.id = '0';
+  state.id = map.todo.id;
   state.todo = Todo();
   return state;
 }
