@@ -3,7 +3,7 @@ Language: [中文简体](https://github.com/hyjfine/flutter_redux_sample) | [Eng
 # flutter_redux_sample
 [![Build Status](https://travis-ci.org/hyjfine/flutter_redux_sample.svg?branch=master)](https://travis-ci.org/hyjfine/flutter_redux_sample)
 
-  <img align="right" src ="http://doc.heyongjian.cn/hyj-doc-flutter-demo-run.gif" alt="Todo List">
+  <img align="right" src ="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-flutter-demo-run.gif" alt="Todo List">
 
   Todo List 例子，按照MVVM模块化分层，用Redux管理数据和状态。Demo示例Flutter中怎么比较合理的联网发API，获取处理数据，刷新视图。Redux在一个Flutter App中是起什么作用和怎么工作的。
 
