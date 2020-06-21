@@ -12,7 +12,7 @@ import 'package:flutter_app_redux/utils/print_util.dart';
 class Services {
   static final defaultCode = '-1';
   static final requestMinThreshold = 500;
-  static final _options = Options(
+  static final _options = BaseOptions(
     baseUrl: Config.baseUrl,
     connectTimeout: 10000,
     receiveTimeout: 10000,
@@ -97,7 +97,7 @@ class Services {
       PrintUtil.print('${error.type}');
       PrintUtil.print('${error.message}');
       PrintUtil.print('${error.response}');
-      PrintUtil.print('${error.stackTrace}');
+      PrintUtil.print('${error.toString()}');
       PrintUtil.print('');
       PrintUtil.print(
           '==================  ${failure(model).runtimeType}  ====  END  =======================================================================================================');
@@ -173,7 +173,7 @@ class Services {
       PrintUtil.print('${error.type}');
       PrintUtil.print('${error.message}');
       PrintUtil.print('${error.response}');
-      PrintUtil.print('${error.stackTrace}');
+      PrintUtil.print('${error.toString()}');
       PrintUtil.print('');
       PrintUtil.print(
           '==================  ${failure(model).runtimeType}====  END  =======================================================================================================');
